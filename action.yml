@@ -1,0 +1,39 @@
+name: 'Link to jira issues'
+description: 'Link jira issues to a github actions or commit or whatever you want.'
+inputs:
+  jira-api-token:
+    description: 'Jira api token'
+    required: true
+  jira-email:
+    description: 'Jira email related to api token'
+    required: true
+  jira-base-url:
+    description: 'Jira base url'
+    required: true
+  issues:
+    description: 'Issues to move! It must be separated by ","'
+    required: true
+  title:
+    description: 'Title for remote link in Jira'
+    required: false
+  message:
+    description: 'Message for remote link in Jira'
+    required: false
+  app-name:
+    description: 'App name for remote link in Jira'
+    required: false
+  link-url:
+    description: 'Link url for remote link in Jira'
+    required: false
+  relationship:
+    description: 'Relationship for remote link in Jira'
+    required: false
+outputs:
+  added-links:
+    description: 'How much links was added!'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  icon: 'align-justify'
+  color: 'blue'
