@@ -1,7 +1,7 @@
 {
-  "name": "jira-issue-transitions",
+  "name": "link-to-jira-issues",
   "version": "1.0.0",
-  "description": "Github action for move jira tickets",
+  "description": "Github action for link to jira issues",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,15 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pineapple-lab/jira-issue-transitions.git"
+    "url": "git+https://github.com/pineapple-lab/link-to-jira-issues.git"
   },
-  "keywords": [],
+  "keywords": [
+    "jira",
+    "issues",
+    "issue",
+    "link",
+    "action",
+    "github"
+  ],
   "author": "Julio Suarez <juliosuarezf93@gmail.com> (https://github.com/julioE3274)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pineapple-lab/jira-issue-transitions/issues"
+    "url": "https://github.com/pineapple-lab/link-to-jira-issues/issues"
   },
-  "homepage": "https://github.com/pineapple-lab/jira-issue-transitions#readme",
+  "homepage": "https://github.com/pineapple-lab/link-to-jira-issues#readme",
   "dependencies": {
     "@actions/core": "^1.8.0",
     "@actions/github": "^5.0.1",
