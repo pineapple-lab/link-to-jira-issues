@@ -50,7 +50,7 @@ Total of added links.
 ```
 - name: Link jira issues
   if: steps.my_example_step.outputs.jira-keys != ''
-  uses: pineapple-lab/link-to-jira-issues@v1.0
+  uses: pineapple-lab/link-to-jira-issues@v1.1
   with:
     jira-api-token: "${{secrets.JIRA_API_TOKEN}}"
     jira-email: "${{secrets.JIRA_USER_EMAIL}}"

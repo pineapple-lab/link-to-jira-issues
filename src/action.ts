@@ -46,16 +46,25 @@ export class Action {
 
 		let addedLinks = 0;
 
-		const promises = this.issues.map( async issue => {
+		await this.promiseByBatch( this.issues, async issue => {
 			const result = await this.jira.addRemoteLink(issue, this.title, this.message, this.linkUrl);
 			if (result) {
 				addedLinks++;
 			}
 		} );
 
-		await Promise.all(promises);
-
 		core.setOutput('added-links', addedLinks);
+	}
+
+	private async promiseByBatch( array: any[], handler: (item: any) => Promise<any>, size = 20, results: any[] = [] ): Promise<any[]> {
+		if (!isNoEmptyArray(array) || size === 0) {
+			return results;
+		}
+		const todo = array.splice(0, size);
+		const promises = todo.map(handler);
+		const batchResults = await Promise.all(promises);
+		results = results.concat(batchResults);
+		return this.promiseByBatch(array, handler, size, results);
 	}
 
 }

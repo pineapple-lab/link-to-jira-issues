@@ -13663,14 +13663,25 @@ class Action {
     execute() {
         return __awaiter(this, void 0, void 0, function* () {
             let addedLinks = 0;
-            const promises = this.issues.map((issue) => __awaiter(this, void 0, void 0, function* () {
+            yield this.promiseByBatch(this.issues, (issue) => __awaiter(this, void 0, void 0, function* () {
                 const result = yield this.jira.addRemoteLink(issue, this.title, this.message, this.linkUrl);
                 if (result) {
                     addedLinks++;
                 }
             }));
-            yield Promise.all(promises);
             core.setOutput('added-links', addedLinks);
+        });
+    }
+    promiseByBatch(array, handler, size = 20, results = []) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!(0, utils_1.isNoEmptyArray)(array) || size === 0) {
+                return results;
+            }
+            const todo = array.splice(0, size);
+            const promises = todo.map(handler);
+            const batchResults = yield Promise.all(promises);
+            results = results.concat(batchResults);
+            return this.promiseByBatch(array, handler, size, results);
         });
     }
 }
